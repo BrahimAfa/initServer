@@ -4,7 +4,7 @@ services:
   mongodb:
     container_name: c_mongo
     image: mongo 
-    command: 'mongod --dbpath /data/db --replSet rs0 --bind_ip localhost'
+    command: 'mongo --port 27017 --dbpath /data/db --replSet rs0 --bind_ip localhost'
     restart: always
     ports:
       - 27017:  
