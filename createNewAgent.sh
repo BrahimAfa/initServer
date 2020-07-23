@@ -1,7 +1,6 @@
 echo 'updating server'
-
-
-    set -x
+#craete vm azure with cli
+set -x
 sudo apt update
 set +x
 
