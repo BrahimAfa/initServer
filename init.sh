@@ -31,7 +31,7 @@ set -x
 set +x
 
 set -x
-    sudo ufw enable 
+    yes | sudo ufw enable 
     sudo ufw allow 80
     sudo ufw allow 3001
 set +x
