@@ -21,7 +21,7 @@ set +x
 
 echo 'installing docker from original repo'
 set -x
-sudo apt install docker-ce
+sudo apt-get -y install docker-ce
 set +x
 
 set -x
