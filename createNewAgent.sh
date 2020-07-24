@@ -22,6 +22,9 @@ set +x
 echo 'installing docker from original repo'
 set -x
 sudo apt-get -y install docker-ce
+
+sudo usermod –a –G docker $USER
+
 set +x
 
 set -x
@@ -33,15 +36,18 @@ set -x
     yes | sudo ufw enable 
     sudo ufw allow 80
     sudo ufw allow 3001
+    sudo ufw allow ssh
 set +x
 
 set -x
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
 
-nvm install --lts
+sudo bash nodesource_setup.sh
+
+sudo apt-get -y  install nodejs
+
+sudo apt-get -y install npm
 set +x
 
 
