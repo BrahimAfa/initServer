@@ -1,46 +1,36 @@
 echo 'updating server'
-#craete vm azure with cli
-set -x
-sudo apt update
-set +x
+# craete vm azure with cli
+ apt update
 
-echo 'installing certificats'
-set -x
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-set +x
+echo '====>>> installing certificats'
+ apt install apt-transport-https ca-certificates curl software-properties-common
+ 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
-echo 'installing certificats'
-set -x
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-set +x
+echo '====>>> adding original docker repos'
 
-echo 'adding original docker repos'
-set -x
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-set +x
+ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 
-echo 'installing docker from original repo'
-set -x
-sudo apt-get -y install docker-ce
+echo '====>>> installing docker from original repo'
 
-sudo usermod –a –G docker $USER
+apt-get -y install docker-ce
 
-set +x
+echo '====>>> adding current logged in user to docker group'
 
-set -x
- sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
- sudo chmod +x /usr/local/bin/docker-compose
-set +x
+usermod –a –G docker $USER
 
-set -x
-    yes | sudo ufw enable 
-    sudo ufw allow 80
-    sudo ufw allow 3001
-    sudo ufw allow ssh
-set +x
+echo '====>>> installing docker compose'
 
-set -x
-
+ curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ chmod +x /usr/local/bin/docker-compose
+echo '====>>> opening the backend and frontend ports in the agent machin'
+    yes | ufw enable 
+    ufw allow 80
+	ufw allow 3001
+    ufw allow ssh
+	
+echo '====>>> update the ubuntu nodjs repository to version 12.X'
+# by default 
 curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
 
 sudo bash nodesource_setup.sh
@@ -48,7 +38,6 @@ sudo bash nodesource_setup.sh
 sudo apt-get -y  install nodejs
 
 sudo apt-get -y install npm
-set +x
 
 
 
