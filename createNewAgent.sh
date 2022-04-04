@@ -17,7 +17,7 @@ apt-get -y install docker-ce
 
 echo '====>>> adding current logged in user to docker group'
 
-usermod –a –G docker $USER
+usermod -a -G docker $USER
 
 echo '====>>> installing docker compose'
 
