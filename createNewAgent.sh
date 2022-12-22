@@ -33,7 +33,7 @@ echo '====>>> opening the backend and frontend ports in the agent machin'
 echo '====>>> update the ubuntu nodjs repository to version 12.X'
 # by default ubuntu doesn't have the latest nodjs version
 
-curl -sL https://deb.nodesource.com/setup_12.x 	-o nodesource_setup.sh
+curl -sL https://deb.nodesource.com/setup_16.x 	-o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 
 sudo apt-get -y  install nodejs
